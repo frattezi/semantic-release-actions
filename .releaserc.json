@@ -1,0 +1,13 @@
+{
+  "branches": [
+    "master",
+    "next"
+  ],
+  "repositoryUrl": "https://github.com/frattezi/semantic-release-actions",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github"
+  ],
+  "ci": false
+}
