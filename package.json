@@ -1,0 +1,26 @@
+{
+    "name": "semantic-release-actions",
+    "version": "0.1.0",
+    "description": "Test semantic-release",
+    "main": "src/index.js",
+    "scripts": {
+      "pretest": "eslint --ignore-path .gitignore ."
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/frattezi/semantic-release-actions"
+    },
+    "author": "Pedro Frattezi",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/"
+    },
+    "homepage": "https://github.com/",
+    "dependencies": {
+      "winston": "^3.2.1"
+    },
+    "devDependencies": {
+      "prettier": "^1.19.1"
+    }
+  }
+  
