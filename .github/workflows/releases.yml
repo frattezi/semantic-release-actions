@@ -22,4 +22,4 @@ jobs:
           npx semantic-release
         
       - name: show release
-        run: echo ${steps.release.outputs.new_release_version}
+        run: echo ${{steps.release.outputs.new_release_version}}
