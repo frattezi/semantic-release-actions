@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   release:
     name: Release
@@ -19,3 +20,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npx semantic-release
+        
+      - name: show release
+        run: echo ${steps.release.outputs.new_release_version}
