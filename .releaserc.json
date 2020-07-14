@@ -1,5 +1,6 @@
 {
   "branches": [
+    "test",
     "master"
   ],
   "repositoryUrl": "https://github.com/frattezi/semantic-release-actions",
