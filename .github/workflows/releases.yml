@@ -15,8 +15,6 @@ jobs:
 
       - name: Release
         id: release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npx semantic-release
           echo "::set-output name=new_release_version::$(git describe --tags $(git rev-list --tags --max-count=1))"
