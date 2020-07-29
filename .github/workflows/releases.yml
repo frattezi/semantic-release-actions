@@ -30,5 +30,6 @@ jobs:
     steps:
       - name: Test variables output
         run: |
+          echo "test"
           echo ${{ needs.release.outputs.release_version }}
           echo ${{ needs.release.outputs.version_upgrade }}
