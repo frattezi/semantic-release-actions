@@ -1,7 +1,7 @@
 {
   "branches": [
     "master",
-    "testing-no-change-semantic",
+    "execute-only-on-changes",
     "next"
   ],
   "repositoryUrl": "https://github.com/frattezi/semantic-release-actions",

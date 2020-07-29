@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     outputs:
       release_version: ${{ steps.release.outputs.new_release_version }}
-      no_version_upgrade: ${{ steps.release.outputs.version_upgrade }}
+      version_upgrade: ${{ steps.release.outputs.version_upgrade }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -23,17 +23,16 @@ jobs:
         run: |
           echo "::set-output name=version_upgrade::$(npx semantic-release | grep "no new version is released")"
           echo "::set-output name=new_release_version::$(git describe --tags $(git rev-list --tags --max-count=1))"
-
       - name: check
         run: |
-          echo $ {{ steps.release.outputs.new_release_version }}
-          echo $ {{ steps.release.outputs.version_upgrade }}
+          echo ${{ steps.release.outputs.new_release_version }}
+          echo ${{ steps.release.outputs.version_upgrade }}
 
   test:
     name: testing
     runs-on: ubuntu-18.04
     needs: [release]
-    if: ${{ !needs.release.outputs.no_version_upgrade }}
+    if: ${{ !needs.release.outputs.version_upgrade }}
     steps:
       - name: Test variables output
         run: |
