@@ -1,13 +1,13 @@
 name: Release
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
   release:
-    name: Release
+    name: release
     runs-on: ubuntu-18.04
+    outputs:
+      release_version: ${{ steps.release.outputs.new_release_version }}
+      version_upgrade: ${{ steps.release.outputs.version_upgrade }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -16,15 +16,19 @@ jobs:
         with:
           node-version: 12
 
-      - name: Release
+      - name: release
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npx semantic-release
+          echo "::set-output name=version_upgrade::$(npx semantic-release | grep "no new version is released")"
           echo "::set-output name=new_release_version::$(git describe --tags $(git rev-list --tags --max-count=1))"
-        
-      - name: show release
-        run: | 
-          echo ${{ steps.release.outputs.new_release_version }}
-          echo ${{ github.run_id }}
+  test:
+    name: testing
+    runs-on: ubuntu-18.04
+    needs: [release]
+    steps:
+      - name: Test variables output
+        run: |
+          echo ${{ needs.release.outputs.release_version }}
+          echo ${{ needs.release.outputs.version_upgrade }}
